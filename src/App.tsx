@@ -15,7 +15,7 @@ function App() {
     console.log(user_info.id)
     try {
       // const response = await axios({ data: { botName: inputText, url: data.id }, method: 'post', url: "http://localhost:8000/create_bot" });
-      const res = await axios.post(`https://4f6d-202-83-17-215.in.ngrok.io/create_bot?userId=${user_info.id}&botName=${inputText}&url=${data.id}/`,
+      const res = await axios.post(`https://d3ad-202-83-17-215.in.ngrok.io/create_bot?userId=${user_info.id}&botName=${inputText}&url=${data.id}/`,
                                    {data : ''},
                                    {headers: {"accept": "application/json"}}
                                   )

@@ -3,25 +3,23 @@ import ReactDOM from "react-dom";
 import axios from "axios";
 
 function App() {
-  // const { board } = window.miro.board;
-
+  
   const [inputText, setInputText] = React.useState("")
 
-  const handleInsertCalendar = async () => {
-    // console.log(board, { window })
+  const submitBot = async () => {
     const board = window.miro.board;
     const data = await board.getInfo();
-    const user_info = await board.getUserInfo()
-    console.log(user_info.id)
+    const user_info = await board.getUserInfo();
+    
     try {
-      // const response = await axios({ data: { botName: inputText, url: data.id }, method: 'post', url: "http://localhost:8000/create_bot" });
       const res = await axios.post(`https://b615-216-48-183-17.in.ngrok.io/create_bot?userId=${user_info.id}&botName=${inputText}&url=${data.id}/`,
                                    {data : ''},
                                    {headers: {"accept": "application/json"}}
                                   )
-      console.log('axios res -->', res)
     } catch (err) {
+    
       console.log('error from axios-->', err)
+    
     }
 
 
@@ -31,20 +29,20 @@ function App() {
     <div >
       <div className="cs1 ce12">
         <p className="p-medium">
-          Type the name of the bot, and click "Generate Bot" to generate and deploy a new bot, on Discord.
+          Type the name of the bot, and click "Submit Bot" to submit and deploy a new bot, on Discord.
         </p>
       </div>
       <form className="form">
         <div className="cs1 ce12">
           <h4 className="h4">Bot Name</h4>
         </div>
-        <input className="inputJee" type="text" id="bot_name_inp" onChange={(e) => { setInputText(e.target.value) }} />
+        <input className="inputBox" type="text" id="bot_name_inp" onChange={(e) => { setInputText(e.target.value) }} />
       </form>
 
       <div className="cs1 ce12">
         <button
           className="button button-primary"
-          onClick={handleInsertCalendar}
+          onClick={submitBot}
         >
           Submit Bot
         </button>
